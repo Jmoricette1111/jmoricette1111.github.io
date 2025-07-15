@@ -1,112 +1,117 @@
 <!DOCTYPE html>
-<html lang="ht">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Aurefé Collection</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Aurefé Collection - Men's & Women's Fashion and Perfumes</title>
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background-color: #fafafa;
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #fdfdfd;
+      padding: 20px;
       color: #333;
+    }
+    h1 {
       text-align: center;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: #2c3e50;
     }
-    header {
-      background: #000;
-      color: #fff;
-      padding: 40px 10px;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 38px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .section {
-      padding: 40px 20px;
-    }
-    .section h2 {
-      font-size: 28px;
-      color: #8e44ad;
-    }
-    .products {
+    .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      margin-top: 20px;
+      gap: 30px;
     }
-    .product {
+    .item {
       background: white;
-      border-radius: 12px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 280px;
+      overflow: hidden;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .item:hover {
+      transform: scale(1.05);
+    }
+    .item img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      display: block;
+    }
+    .desc {
       padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      width: 250px;
     }
-    .product img {
-      max-width: 100%;
-      border-radius: 8px;
+    .desc h2 {
+      margin: 10px 0 5px;
+      font-size: 1.2rem;
+      color: #34495e;
     }
-    footer {
-      background: #111;
-      color: white;
-      padding: 20px;
-      margin-top: 40px;
+    .desc p {
+      font-size: 0.95rem;
+      color: #666;
+      line-height: 1.3;
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>Aurefé Collection</h1>
-  <p>Rad Gason • Rad Fanm • Parfum</p>
-</header>
+  <h1>Aurefé Collection - Men's & Women's Fashion and Perfumes</h1>
 
-<div class="section">
-  <h2>Rad Gason</h2>
-  <div class="products">
-    <div class="product">
-      <img src="https://i.imgur.com/Jx7zkTn.jpg" alt="Chemiz Gason">
-      <p>Chemiz klasik</p>
+  <div class="gallery">
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=400&q=80" alt="Men's Fashion Outfit" />
+      <div class="desc">
+        <h2>Elegant Men's Suit</h2>
+        <p>Classic tailored suit perfect for formal occasions and business events.</p>
+      </div>
     </div>
-    <div class="product">
-      <img src="https://i.imgur.com/kxU4Sks.jpg" alt="T-shirt Gason">
-      <p>T-shirt Elegant</p>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Women's Fashion Dress" />
+      <div class="desc">
+        <h2>Stylish Women's Dress</h2>
+        <p>Chic and comfortable dress, ideal for casual and evening wear.</p>
+      </div>
     </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=400&q=80" alt="Perfume Bottle" />
+      <div class="desc">
+        <h2>Signature Perfume</h2>
+        <p>A luxurious scent that embodies elegance and sophistication.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80" alt="Men's Casual Outfit" />
+      <div class="desc">
+        <h2>Casual Men's Wear</h2>
+        <p>Comfortable and trendy casual outfit for everyday style.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1495121605193-b116b5b9c11b?auto=format&fit=crop&w=400&q=80" alt="Women's Perfume Bottle" />
+      <div class="desc">
+        <h2>Floral Perfume</h2>
+        <p>Fresh floral fragrance that brightens your day and mood.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="https://images.unsplash.com/photo-1530845645337-cde568e96222?auto=format&fit=crop&w=400&q=80" alt="Women's Fashion Jacket" />
+      <div class="desc">
+        <h2>Fashionable Jacket</h2>
+        <p>Perfect lightweight jacket for stylish protection against the chill.</p>
+      </div>
+    </div>
+
   </div>
-</div>
-
-<div class="section">
-  <h2>Rad Fanm</h2>
-  <div class="products">
-    <div class="product">
-      <img src="https://i.imgur.com/n7q2zOe.jpg" alt="Robe Fanm">
-      <p>Robe Floral</p>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/CS2Zb9R.jpg" alt="Style Modern">
-      <p>Style Modern</p>
-    </div>
-  </div>
-</div>
-
-<div class="section">
-  <h2>Parfum</h2>
-  <div class="products">
-    <div class="product">
-      <img src="https://i.imgur.com/xUJnIci.jpg" alt="Parfum 1">
-      <p>Parfum Classique</p>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/37R8C5M.jpg" alt="Parfum 2">
-      <p>Essence Delika</p>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p>&copy; 2025 Aurefé Collection • Jean Joseph Moricette</p>
-</footer>
 
 </body>
 </html>

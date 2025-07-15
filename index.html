@@ -1,117 +1,386 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Aurefé Collection - Men's & Women's Fashion and Perfumes</title>
+  <title>Aurefé Collection - Professional Storefront</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #fafafa;
+    /* RESET & BASE */
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
       color: #333;
-    }
-    h1 {
-      text-align: center;
-      margin-bottom: 40px;
-      font-weight: 700;
-      color: #2c3e50;
-    }
-    .gallery {
+      min-height: 100vh;
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+      background: #fff;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #222;
+      cursor: pointer;
+      user-select: none;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      font-weight: 600;
+    }
+    nav ul li {
+      cursor: pointer;
+      padding: 8px 0;
+      transition: color 0.3s ease;
+    }
+    nav ul li:hover {
+      color: #0077cc;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .search-box {
+      position: relative;
+    }
+    .search-box input[type="text"] {
+      padding: 7px 35px 7px 12px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      width: 180px;
+      transition: width 0.3s ease;
+    }
+    .search-box input[type="text"]:focus {
+      outline: none;
+      border-color: #0077cc;
+      width: 240px;
+    }
+    .search-box button {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      color: #555;
+      font-size: 1.1rem;
+    }
+
+    /* SIGN IN BUTTON */
+    .btn-signin {
+      padding: 8px 18px;
+      border: 2px solid #0077cc;
+      background: transparent;
+      color: #0077cc;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .btn-signin:hover {
+      background: #0077cc;
+      color: white;
+    }
+
+    /* MAIN CONTENT - PRODUCTS */
+    main {
+      flex: 1;
+      padding: 30px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
       gap: 30px;
     }
-    .item {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      width: 280px;
+    .product-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
       overflow: hidden;
-      text-align: center;
-      transition: transform 0.3s ease;
+      background: white;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.05);
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.3s ease;
     }
-    .item:hover {
-      transform: scale(1.05);
+    .product-card:hover {
+      box-shadow: 0 8px 18px rgb(0 0 0 / 0.15);
     }
-    .item img {
+    .product-card img {
       width: 100%;
-      height: 350px;
       object-fit: cover;
-      display: block;
+      height: 280px;
     }
-    .desc {
+    .product-info {
       padding: 15px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .desc h2 {
-      margin: 10px 0 5px;
-      font-size: 1.2rem;
-      color: #34495e;
+    .product-info h3 {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: #222;
     }
-    .desc p {
+    .product-info p {
+      flex-grow: 1;
       font-size: 0.95rem;
-      color: #666;
-      line-height: 1.3;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .btn-buy {
+      padding: 10px;
+      border: none;
+      background-color: #0077cc;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+    .btn-buy:hover {
+      background-color: #005fa3;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    /* MODAL SIGN IN */
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      background: white;
+      padding: 30px 35px;
+      border-radius: 8px;
+      width: 320px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .modal-content h2 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #222;
+      text-align: center;
+    }
+    .modal-content label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+    .modal-content input[type="email"],
+    .modal-content input[type="password"] {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 18px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    .modal-content input[type="email"]:focus,
+    .modal-content input[type="password"]:focus {
+      outline: none;
+      border-color: #0077cc;
+    }
+    .modal-content button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: #0077cc;
+      color: white;
+      font-weight: 700;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .modal-content button:hover {
+      background-color: #005fa3;
+    }
+    .modal-close {
+      position: absolute;
+      top: 12px; right: 12px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: #999;
+      transition: color 0.3s ease;
+    }
+    .modal-close:hover {
+      color: #444;
+    }
+
+    /* Responsive */
+    @media(max-width: 600px) {
+      header {
+        flex-wrap: wrap;
+        gap: 15px;
+      }
+      nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .search-box input[type="text"] {
+        width: 120px;
+      }
+      main {
+        padding: 20px 15px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Aurefé Collection - Men's & Women's Fashion and Perfumes</h1>
+<header>
+  <div class="logo">Aurefé Collection</div>
+  <nav>
+    <ul>
+      <li>Men</li>
+      <li>Women</li>
+      <li>Perfumes</li>
+      <li>Sale</li>
+      <li>Contact</li>
+    </ul>
+  </nav>
+  <div class="header-right">
+    <div class="search-box">
+      <input type="text" placeholder="Search products..." />
+      <button aria-label="Search">&#128269;</button>
+    </div>
+    <button class="btn-signin" id="openLoginBtn">Sign In</button>
+  </div>
+</header>
 
-  <div class="gallery">
+<main>
+  <div class="products">
 
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=400&q=80" alt="Men's Fashion Outfit" />
-      <div class="desc">
-        <h2>Elegant Men's Suit</h2>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1521334884684-d80222895322?auto=format&fit=crop&w=400&q=80" alt="Men's Elegant Suit" />
+      <div class="product-info">
+        <h3>Elegant Men's Suit</h3>
         <p>Classic tailored suit perfect for formal occasions and business events.</p>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Women's Fashion Dress" />
-      <div class="desc">
-        <h2>Stylish Women's Dress</h2>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=400&q=80" alt="Stylish Women's Dress" />
+      <div class="product-info">
+        <h3>Stylish Women's Dress</h3>
         <p>Chic and comfortable dress, ideal for casual and evening wear.</p>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=400&q=80" alt="Perfume Bottle" />
-      <div class="desc">
-        <h2>Signature Perfume</h2>
+    <div class="product-card">
+      <img src="https://images.unsplash.com/photo-1514996937319-344454492b37?auto=format&fit=crop&w=400&q=80" alt="Signature Perfume" />
+      <div class="product-info">
+        <h3>Signature Perfume</h3>
         <p>A luxurious scent that embodies elegance and sophistication.</p>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
-    <div class="item">
+    <div class="product-card">
       <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=400&q=80" alt="Men's Casual Outfit" />
-      <div class="desc">
-        <h2>Casual Men's Wear</h2>
+      <div class="product-info">
+        <h3>Casual Men's Wear</h3>
         <p>Comfortable and trendy casual outfit for everyday style.</p>
-      </div>
-    </div>
-
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1495121605193-b116b5b9c11b?auto=format&fit=crop&w=400&q=80" alt="Women's Perfume Bottle" />
-      <div class="desc">
-        <h2>Floral Perfume</h2>
-        <p>Fresh floral fragrance that brightens your day and mood.</p>
-      </div>
-    </div>
-
-    <div class="item">
-      <img src="https://images.unsplash.com/photo-1530845645337-cde568e96222?auto=format&fit=crop&w=400&q=80" alt="Women's Fashion Jacket" />
-      <div class="desc">
-        <h2>Fashionable Jacket</h2>
-        <p>Perfect lightweight jacket for stylish protection against the chill.</p>
+        <button class="btn-buy">Add to Cart</button>
       </div>
     </div>
 
   </div>
+</main>
+
+<footer>
+  &copy; 2025 Aurefé Collection. All rights reserved.
+</footer>
+
+<!-- SIGN IN MODAL -->
+<div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle" aria-hidden="true">
+  <div class="modal-content">
+    <span class="modal-close" id="closeLoginBtn">&times;</span>
+    <h2 id="loginTitle">Sign In</h2>
+    <form id="loginForm" action="#" method="POST">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required autocomplete="username" />
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required autocomplete="current-password" />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const openLoginBtn = document.getElementById('openLoginBtn');
+  const closeLoginBtn = document.getElementById('closeLoginBtn');
+  const loginModal = document.getElementById('loginModal');
+
+  openLoginBtn.addEventListener('click', () => {
+    loginModal.classList.add('active');
+    loginModal.setAttribute('aria-hidden', 'false');
+  });
+
+  closeLoginBtn.addEventListener('click', () => {
+    loginModal.classList.remove('active');
+    loginModal.setAttribute('aria-hidden', 'true');
+  });
+
+  window.addEventListener('click', e => {
+    if (e.target === loginModal) {
+      loginModal.classList.remove('active');
+      loginModal.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Optional: Handle form submit
+  document.getElementById('loginForm').addEventListener('submit', e => {
+    e.preventDefault();
+    alert('Login functionality is not yet implemented.');
+  });
+</script>
 
 </body>
 </html>
